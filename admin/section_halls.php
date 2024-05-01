@@ -18,18 +18,18 @@ $halls = json_decode(getHalls(), true);
 				</li>
 			<?php } ?>
 		</ul>
-		<button class="conf-step__button conf-step__button-accent" onclick="showPopup()">Добавить зал</button>
+		<button class="conf-step__button conf-step__button-accent" onclick="showPopup('#hall')">Добавить зал</button>
 	</div>
 </section>
 </main>
 
-<div class="popup">
+<div class="popup" id="hall">
 	<div class="popup__container">
 		<div class="popup__content">
 			<div class="popup__header">
 				<h2 class="popup__title">
 					Добавление зала
-					<a class="popup__dismiss" onclick="hidePopup()"><img src="i/close.png" alt="Закрыть"></a>
+					<a class="popup__dismiss" onclick="hidePopup('#hall')"><img src="i/close.png" alt="Закрыть"></a>
 				</h2>
 
 			</div>

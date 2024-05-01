@@ -1,23 +1,35 @@
 <?php
 require_once('db_connect.php');
 
-
 $name = $_POST['name'] ?? '';
 $duration = $_POST['duration'] ?? '';
 $description = $_POST['description'] ?? '';
 $country = $_POST['country'] ?? '';
-$hall_id = $_POST['hall'] ?? '';
 
-$sql = "INSERT INTO movies (name, duration, description, country, hall_id) VALUES (?, ?, ?, ?, ?)";
+// Обработка загрузки постера
+if ($_FILES['poster']['error'] === UPLOAD_ERR_OK) {
+	$poster_tmp_name = $_FILES['poster']['tmp_name'];
+	$poster_name = basename($_FILES['poster']['name']);
+	$poster_path = '../posters/' . $poster_name; // Директория, куда будет сохранен постер
+
+	// Перемещение загруженного файла в директорию
+	if (move_uploaded_file($poster_tmp_name, $poster_path)) {
+
+	} else {
+
+	}
+}
+
+$sql = "INSERT INTO movies (name, duration, description, country, poster) VALUES (?, ?, ?, ?, ?)";
 
 if ($stmt = $db->prepare($sql)) {
-	$stmt->bind_param("sissi", $name, $duration, $description, $country, $hall_id);
+	$stmt->bind_param("sisss", $name, $duration, $description, $country, $poster_path);
 
 	if ($stmt->execute()) {
-
 		$response = array(
 			'success' => true,
-			'message' => 'Фильм успешно добавлен'
+			'message' => 'Фильм успешно добавлен',
+			'name' => $name
 		);
 		echo json_encode($response);
 	} else {
@@ -27,7 +39,6 @@ if ($stmt = $db->prepare($sql)) {
 		);
 		echo json_encode($response);
 	}
-
 
 	$stmt->close();
 } else {
