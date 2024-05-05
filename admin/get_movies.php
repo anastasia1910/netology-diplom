@@ -1,5 +1,4 @@
 <?php
-// Подключение к базе данных
 require_once('db_connect.php');
 
 function getMoviesList()
@@ -23,16 +22,13 @@ function getMoviesList()
 			);
 		}
 
-		// Преобразуем массив в JSON и возвращаем его
 		return json_encode($movies);
 	} else {
-		// Если запрос не выполнен успешно, возвращаем пустой JSON
 		return json_encode(array());
 	}
 
 	mysqli_close($db);
 }
 
-// Возвращаем данные в формате JSON
 echo getMoviesList();
 ?>

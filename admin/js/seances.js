@@ -3,21 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
     updateMoviesList();
 
     function displayMovies(moviesData) {
-        const selectElement = document.querySelector('.conf-step__input[name="movie_id"]'); // Находим элемент <select> по его имени
+        const selectElement = document.querySelector('.conf-step__input[name="movie_id"]');
 
-        selectElement.innerHTML = ''; // Очищаем содержимое элемента <select>
+        selectElement.innerHTML = '';
 
-        const defaultOption = document.createElement('option'); // Создаем элемент <option> для дефолтного значения
-        defaultOption.value = ''; // Задаем значение дефолтной опции пустым
-        defaultOption.textContent = 'Выберите фильм'; // Задаем текст дефолтной опции
-        selectElement.appendChild(defaultOption); // Добавляем дефолтную опцию в список
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Выберите фильм';
+        selectElement.appendChild(defaultOption);
 
-        // Перебираем каждый фильм из полученных данных
         moviesData.forEach(movie => {
-            const optionElement = document.createElement('option'); // Создаем элемент <option> для каждого фильма
-            optionElement.value = movie.id; // Задаем значение опции равное идентификатору фильма
-            optionElement.textContent = movie.name; // Задаем текст опции равный названию фильма
-            selectElement.appendChild(optionElement); // Добавляем опцию в список
+            const optionElement = document.createElement('option');
+            optionElement.value = movie.id;
+            optionElement.textContent = movie.name;
+            selectElement.appendChild(optionElement);
         });
     }
 
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 const seancesContainers = document.querySelectorAll('.conf-step__seances-hall');
                 seancesContainers.forEach(seanceContainer => {
-                    seanceContainer.querySelector('.conf-step__seances-timeline').innerHTML = ''; // Очищаем текущий список сеансов для каждого зала
+                    seanceContainer.querySelector('.conf-step__seances-timeline').innerHTML = '';
                 });
 
                 data.sort((a, b) => {
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const [hours, minutes] = startTime.split(':').map(Number);
         const startMinutes = hours * 60 + minutes;
         const baseStartTime = 8 * 60;
-        const pixelsPerMinute = 1.2; // Уточним коэффициент для преобразования минут в пиксели
+        const pixelsPerMinute = 1.2;
         const marginLeft = (startMinutes - baseStartTime) * pixelsPerMinute;
         return marginLeft;
     }
@@ -98,14 +97,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.success) {
                     hidePopup('#seance');
                     updateSeancesList();
-                    console.log(data.message); // log the message to the console instead of alert
+                    console.log(data.message);
                 } else {
-                    console.error(data.message); // log the error message to the console instead of alert
+                    console.error(data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                console.error('Произошла ошибка при отправке запроса на сервер'); // log the error message to the console instead of alert
+                console.error('Произошла ошибка при отправке запроса на сервер');
             });
     });
 

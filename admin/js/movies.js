@@ -27,38 +27,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updateMoviesList() {
-        var xhr = new XMLHttpRequest(); // Создаем новый объект XMLHttpRequest
-        xhr.open('GET', 'get_movies.php', true); // Настраиваем запрос GET к файлу get_movies.php
-        xhr.onreadystatechange = function() { // Устанавливаем обработчик события изменения состояния запроса
-            if (xhr.readyState === XMLHttpRequest.DONE) { // Проверяем, что состояние запроса DONE (завершено)
-                if (xhr.status === 200) { // Проверяем успешность запроса (статус 200 означает успех)
-                    var moviesData = JSON.parse(xhr.responseText); // Парсим полученные данные в формате JSON
-                    displayMovies(moviesData); // Вызываем функцию для отображения фильмов на странице
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_movies.php', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var moviesData = JSON.parse(xhr.responseText);
+                    displayMovies(moviesData);
                 } else {
-                    console.error('Error:', xhr.statusText); // Выводим сообщение об ошибке в консоль
+                    console.error('Error:', xhr.statusText);
                 }
             }
         };
-        xhr.send(); // Отправляем запрос на сервер
+        xhr.send();
     }
 
     function displayMovies(moviesData) {
-        const moviesContainer = document.querySelector('.conf-step__movies'); // Находим контейнер для фильмов на странице
-        moviesContainer.innerHTML = ''; // Очищаем содержимое контейнера
+        const moviesContainer = document.querySelector('.conf-step__movies');
+        moviesContainer.innerHTML = '';
 
-        if (Array.isArray(moviesData) && moviesData.length > 0) { // Проверяем, что данные являются массивом и содержат хотя бы один элемент
-            moviesData.forEach(movie => { // Перебираем каждый элемент массива фильмов
-                const movieElement = document.createElement('div'); // Создаем новый элемент div для каждого фильма
-                movieElement.classList.add('conf-step__movie'); // Добавляем класс для стилизации
+        if (Array.isArray(moviesData) && moviesData.length > 0) {
+            moviesData.forEach(movie => {
+                const movieElement = document.createElement('div');
+                movieElement.classList.add('conf-step__movie');
                 movieElement.innerHTML = `
                     <img class="conf-step__movie-poster" alt="poster" src="${movie.poster}">
                     <h3 class="conf-step__movie-title">${movie.name}</h3>
                     <p class="conf-step__movie-duration">${movie.duration} минут</p>
                 `;
-                moviesContainer.appendChild(movieElement); // Добавляем элемент фильма в контейнер на странице
+                moviesContainer.appendChild(movieElement);
             });
         } else {
-            console.log('No data available'); // Выводим сообщение в консоль, если данных нет или они пусты
+            console.log('No data available');
         }
     }
 

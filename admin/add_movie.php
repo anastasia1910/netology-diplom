@@ -6,13 +6,11 @@ $duration = $_POST['duration'] ?? '';
 $description = $_POST['description'] ?? '';
 $country = $_POST['country'] ?? '';
 
-// Обработка загрузки постера
 if ($_FILES['poster']['error'] === UPLOAD_ERR_OK) {
 	$poster_tmp_name = $_FILES['poster']['tmp_name'];
 	$poster_name = basename($_FILES['poster']['name']);
-	$poster_path = '../posters/' . $poster_name; // Директория, куда будет сохранен постер
+	$poster_path = '../posters/' . $poster_name;
 
-	// Перемещение загруженного файла в директорию
 	if (move_uploaded_file($poster_tmp_name, $poster_path)) {
 
 	} else {

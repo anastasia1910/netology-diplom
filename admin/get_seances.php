@@ -1,5 +1,4 @@
 <?php
-// Подключение к базе данных
 require_once('db_connect.php');
 
 $sql = "SELECT seances.id AS seance_id, 
