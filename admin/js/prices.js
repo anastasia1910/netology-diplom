@@ -14,15 +14,24 @@ document.addEventListener('DOMContentLoaded', function() {
             vipPrice: vipPrice
         };
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'save_prices.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                standardPriceInput.value = '';
-                vipPriceInput.value = '';
-            }
-        };
-        xhr.send(JSON.stringify(data));
+        fetch('save_prices.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    standardPriceInput.value = '';
+                    vipPriceInput.value = '';
+                    window.alert(data.message);
+                } else {
+                    console.error(data.message);
+                }
+            })
+
+            .catch(error => console.error(error));
     });
 });

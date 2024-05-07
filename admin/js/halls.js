@@ -5,12 +5,14 @@ function addHall(event) {
     xhr.open("POST", "create_hall.php", true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            hidePopup();
+            document.getElementById("addHallForm").reset();
+            hidePopup('#hall');
             updateHallsList();
         }
     };
     xhr.send(formData);
 }
+
 
 function updateHallsList() {
     var xhr = new XMLHttpRequest();
@@ -60,13 +62,20 @@ function updateHallsList() {
 document.getElementById("addHallForm").addEventListener("submit", addHall);
 
 function deleteHall(id) {
+    var confirmation = confirm("Вы уверены, что хотите удалить этот зал и все связанные с ним записи?");
+    if (!confirmation) {
+        return;
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'delete_hall.php?id=' + id, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             var halls = JSON.parse(xhr.responseText);
             updateHallsList();
+            alert("Зал успешно удален!");
         }
     };
     xhr.send();
 }
+

@@ -14,10 +14,22 @@ function getHalls() {
 
 function deleteHall($id) {
 	$db = mysqli_connect('localhost', 'root', '', 'cinema');
-	$query = "DELETE FROM halls WHERE id = $id";
-	mysqli_query($db, $query);
+
+	$query_prices = "DELETE FROM prices WHERE hall_id = $id";
+	mysqli_query($db, $query_prices);
+
+	$query_seances = "DELETE FROM seances WHERE hall_id = $id";
+	mysqli_query($db, $query_seances);
+
+	$query_seats = "DELETE FROM seats WHERE hall_id = $id";
+	mysqli_query($db, $query_seats);
+
+	$query_hall = "DELETE FROM halls WHERE id = $id";
+	mysqli_query($db, $query_hall);
+
 	mysqli_close($db);
 }
+
 
 function addHall($name) {
 	$db = mysqli_connect('localhost', 'root', '', 'cinema');

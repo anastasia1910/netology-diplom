@@ -1,7 +1,6 @@
-<main class="conf-steps">
+
 	<section class="conf-step">
 		<div class="conf-step__wrapper">
-
 			<div class="conf-step__seances">
 				<p class="conf-step__paragraph">
 					<button class="conf-step__button conf-step__button-accent" onclick="showPopup('#seance')">Добавить сеанс
@@ -17,16 +16,15 @@
 		  <?php } ?>
 			</div>
 		</div>
-
 	</section>
-</main>
+
 <div class="popup" id="seance">
 	<div class="popup__container">
 		<div class="popup__content">
 			<div class="popup__header">
 				<h2 class="popup__title">
 					Добавление сеанса
-					<a class="popup__dismiss" onclick="hidePopup('#seance')"><img src="i/close.png" alt="Закрыть"></a>
+					<a class="popup__dismiss" onclick="hidePopup('#seance')"><img src="img/close.png" alt="Закрыть"></a>
 				</h2>
 			</div>
 			<div class="popup__wrapper">

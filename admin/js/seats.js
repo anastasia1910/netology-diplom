@@ -145,13 +145,13 @@ saveButton.addEventListener('click', (e) => {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
+            alert("Конфигурация залов успешно сохранена");
         } else {
-            console.error('Error:', xhr.statusText);
+            alert("Ошибка" + xhr.statusText);
         }
     };
     xhr.onerror = function () {
-        console.error('Request failed');
+        console.error('Ошибка запроса');
     };
     xhr.send(JSON.stringify({seatLayoutData, hall_id: hallId}));
 });

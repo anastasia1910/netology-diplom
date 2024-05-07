@@ -21,14 +21,12 @@
 		</div>
 		<div class="conf-step__legend">
 			<label class="conf-step__label">Цена, рублей<input id="vip-price" type="text" class="conf-step__input"
-																												 placeholder="0" value="350"></label>
+																												 placeholder="0"></label>
 			за <span class="conf-step__chair conf-step__chair_vip"></span> VIP кресла
 		</div>
 
 		<fieldset class="conf-step__buttons text-center">
-			<button class="conf-step__button conf-step__button-regular">Отмена</button>
-			<input type="submit" id="save-button-price" value="Сохранить"
-						 class="conf-step__button conf-step__button-accent">
+			<input type="button" id="save-button-price" value="Сохранить" class="conf-step__button conf-step__button-accent">
 		</fieldset>
 		<div id="error-message"></div>
 	</div>

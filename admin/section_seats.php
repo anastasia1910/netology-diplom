@@ -30,7 +30,6 @@
 		</div>
 		<div id="seat-layout"></div>
 		<fieldset class="conf-step__buttons text-center">
-			<button class="conf-step__button conf-step__button-regular">Отмена</button>
 			<input type="submit" id="save-button" value="Сохранить" class="conf-step__button conf-step__button-accent">
 		</fieldset>
 	</div>
