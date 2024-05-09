@@ -14,4 +14,7 @@
 13. Проверка времени для сеансов (чтобы не было совпадений)
 14. Удаление фильмов и сеансов.
 
-> https://cp15064.tw1.ru/admin/admin.php
+> http://f0981261.xsph.ru/admin/admin.php
+
+Логин: admin@example.com
+Пароль: admin
