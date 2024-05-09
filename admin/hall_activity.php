@@ -6,7 +6,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 $hall_id = $data['hall_id'] ?? '';
 
 if (!empty($hall_id)) {
-	// Получаем текущий статус активности зала
 	$current_status_query = "SELECT activity FROM halls WHERE id = ?";
 	if ($stmt = $db->prepare($current_status_query)) {
 		$stmt->bind_param("i", $hall_id);
@@ -17,7 +16,6 @@ if (!empty($hall_id)) {
 			$stmt->fetch();
 			$stmt->close();
 
-			// Обновляем статус активности зала
 			$update_query = "UPDATE halls SET activity = NOT activity WHERE id = ?";
 			if ($update_stmt = $db->prepare($update_query)) {
 				$update_stmt->bind_param("i", $hall_id);

@@ -8,14 +8,7 @@
 			</button>
 		</p>
 		<div class="conf-step__movies">
-			<?php foreach ($movies as $movie) { ?>
-				<div class="conf-step__movie" data-movie-id="<?php echo $movie['id']; ?>">
-					<img class="conf-step__movie-poster" alt="poster" src="<?php echo $movie['poster']; ?>">
-					<h3 class="conf-step__movie-title"><?php echo $movie['name']; ?></h3>
-					<p class="conf-step__movie-duration"><?php echo $movie['duration']; ?> минут</p>
-					<button class="conf-step__button conf-step__button-trash" data-film-id="119" data-film-name="Унесенные ветром."></button>
-				</div>
-			<?php } ?>
+
 		</div>
 </section>
 </main>
@@ -37,7 +30,7 @@
 						<div class="popup__form">
 							<label class="conf-step__label conf-step__label-fullsize" for="poster">
 								Постер фильма
-								<input type="file" name="poster" id="poster" accept="image/*">
+								<input type="file" name="poster" id="poster" accept=".png,.jpg" required="">
 							</label>
 							<label class="conf-step__label conf-step__label-fullsize" for="name">
 								Название фильма
@@ -46,7 +39,7 @@
 							</label>
 							<label class="conf-step__label conf-step__label-fullsize" for="duration">
 								Продолжительность фильма (мин.)
-								<input class="conf-step__input" type="text" name="duration" data-last-value="" required="">
+								<input class="conf-step__input" type="number" name="duration" id="duration" min="1" max="1000" required="">
 							</label>
 							<label class="conf-step__label conf-step__label-fullsize" for="description">
 								Описание фильма
@@ -54,8 +47,9 @@
 							</label>
 							<label class="conf-step__label conf-step__label-fullsize" for="country">
 								Страна
-								<input class="conf-step__input" type="text" name="country" data-last-value="" required="">
+								<input class="conf-step__input" type="text" name="country" id="country" pattern="[A-Za-zА-Яа-яЁё\s]+" required="">
 							</label>
+
 						</div>
 					</div>
 					<div class="conf-step__buttons text-center">
