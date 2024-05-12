@@ -9,7 +9,7 @@ $country = $_POST['country'] ?? '';
 if ($_FILES['poster']['error'] === UPLOAD_ERR_OK) {
 	$poster_tmp_name = $_FILES['poster']['tmp_name'];
 	$poster_name = basename($_FILES['poster']['name']);
-	$poster_path = '../posters/' . $poster_name;
+	$poster_path = '../img/posters/' . $poster_name;
 
 	if (move_uploaded_file($poster_tmp_name, $poster_path)) {
 

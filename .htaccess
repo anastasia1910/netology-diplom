@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule ^admin/?$ admin/admin.php [L]
+RewriteRule ^client/?$ client/index.php [L]
+RewriteCond %{REQUEST_URI} !^/admin/
+RewriteRule !^client/ /client%{REQUEST_URI} [L]
